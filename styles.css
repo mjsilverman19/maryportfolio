@@ -1,12 +1,12 @@
 /* ============================================================
    Mary Nunes — portfolio
-   Type: Inter (UI, body, labels) + Playfair Display (display serif)
-   To go all-Inter, set --font-display to var(--font-sans) below.
+   Type: Inter throughout. Display sizes carry their own tracking
+   and weight (see --font-display usages) so the big type holds up.
    ============================================================ */
 
 :root {
   --font-sans:    "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-display: var(--font-sans);
 
   --cream:     #faf6ea;
   --cream-dim: #f2ecdc;
@@ -18,6 +18,8 @@
 
   --shell:  1120px;
   --gutter: clamp(1.25rem, 5vw, 3.5rem);
+
+  --draw:   1s cubic-bezier(0.45, 0.05, 0.25, 1);
 }
 
 *,
@@ -33,8 +35,8 @@ body {
   font-family: var(--font-sans);
   font-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
   line-height: 1.6;
-  font-feature-settings: "cv05" 1;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 img { display: block; max-width: 100%; height: auto; }
@@ -63,6 +65,31 @@ a { color: inherit; }
 }
 .skip-link:focus { left: 0; }
 
+/* ── Hand-drawn doodles ────────────────────────────────────── */
+
+.doodle {
+  overflow: visible;
+  pointer-events: none;
+}
+
+.doodle path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* .doodle--ready is added by JS once the dashes are primed, so the
+   doodles render fully drawn when JS is off or motion is reduced. */
+.doodle--ready path {
+  transition: stroke-dashoffset var(--draw);
+}
+
+.doodle.is-drawn path {
+  stroke-dashoffset: 0 !important;
+}
+
 /* ── Shared bits ───────────────────────────────────────────── */
 
 .eyebrow {
@@ -72,6 +99,23 @@ a { color: inherit; }
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
+}
+
+.eyebrow--circled {
+  position: relative;
+  display: block;
+  width: fit-content;
+  margin-bottom: 2.5rem;
+}
+
+.doodle--ellipse {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% + 66px);
+  height: calc(100% + 34px);
+  color: var(--rust);
 }
 
 .rule-accent {
@@ -117,26 +161,68 @@ a { color: inherit; }
 
 .hero { padding-top: clamp(3rem, 8vw, 6rem); }
 
+.hero__inner { position: relative; }
+
 .hero__name {
-  margin: 0 0 1.75rem;
+  margin: 0 0 0.5rem;
   font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(4.5rem, 20vw, 16rem);
-  line-height: 0.84;
-  letter-spacing: -0.015em;
+  font-weight: 500;
+  font-size: clamp(4.25rem, 19.5vw, 15.5rem);
+  line-height: 0.86;
+  letter-spacing: -0.05em;
 }
 
 .hero__name span { display: block; }
 
+.doodle--underline {
+  display: block;
+  width: clamp(210px, 50%, 540px);
+  height: clamp(10px, 1.4vw, 16px);
+  margin-bottom: 1.9rem;
+  color: var(--rust);
+}
+
+.doodle--sun {
+  position: absolute;
+  top: clamp(-0.5rem, 1vw, 1rem);
+  right: var(--gutter);
+  width: clamp(56px, 7vw, 82px);
+  height: clamp(56px, 7vw, 82px);
+  color: var(--rust);
+}
+
+.doodle--sun path { stroke-width: 1.8; }
+
+.doodle--sun .sun__rays { transform-origin: 40px 40px; }
+
+.doodle--sun.is-drawn .sun__rays {
+  animation: sun-spin 54s linear infinite;
+}
+
+@keyframes sun-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Stagger: the core first, then the rays outward. */
+.doodle--ready.doodle--sun .sun__core path { transition-duration: 0.5s; }
+.doodle--ready.doodle--sun .sun__rays path { transition-duration: 0.4s; }
+.doodle--ready.doodle--sun .sun__rays path:nth-child(1) { transition-delay: 0.40s; }
+.doodle--ready.doodle--sun .sun__rays path:nth-child(2) { transition-delay: 0.46s; }
+.doodle--ready.doodle--sun .sun__rays path:nth-child(3) { transition-delay: 0.52s; }
+.doodle--ready.doodle--sun .sun__rays path:nth-child(4) { transition-delay: 0.58s; }
+.doodle--ready.doodle--sun .sun__rays path:nth-child(5) { transition-delay: 0.64s; }
+.doodle--ready.doodle--sun .sun__rays path:nth-child(6) { transition-delay: 0.70s; }
+.doodle--ready.doodle--sun .sun__rays path:nth-child(7) { transition-delay: 0.76s; }
+.doodle--ready.doodle--sun .sun__rays path:nth-child(8) { transition-delay: 0.82s; }
+
 .hero__intro {
   margin: 0;
-  max-width: 34ch;
+  max-width: 36ch;
   font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.375rem);
   line-height: 1.45;
 }
 
 .hero__intro em {
-  font-family: var(--font-display);
   font-style: italic;
   color: var(--rust);
 }
@@ -170,6 +256,20 @@ a { color: inherit; }
   object-fit: cover;
 }
 
+.strip__brace {
+  position: relative;
+  flex: 0 0 clamp(16px, 2vw, 26px);
+  margin-left: clamp(0.25rem, 1vw, 1rem);
+}
+
+.doodle--brace {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--blue);
+}
+
 /* ── Selected work ─────────────────────────────────────────── */
 
 .work {
@@ -188,7 +288,6 @@ a { color: inherit; }
   gap: 1rem;
   padding: clamp(1.1rem, 2.2vw, 1.6rem) 0;
   text-decoration: none;
-  transition: opacity 0.2s ease;
 }
 
 .work__num {
@@ -197,11 +296,20 @@ a { color: inherit; }
   font-variant-numeric: tabular-nums;
 }
 
+/* A hand-drawn underline that draws itself on hover. */
 .work__title {
+  justify-self: start;
+  padding-bottom: 8px;
   font-family: var(--font-display);
-  font-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.75rem);
+  font-size: clamp(1.1875rem, 1.02rem + 0.85vw, 1.625rem);
+  font-weight: 400;
   line-height: 1.25;
-  transition: color 0.2s ease;
+  letter-spacing: -0.02em;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 8' preserveAspectRatio='none'%3E%3Cpath d='M2 5.4C40 2.2 84 6.6 122 3.6 152 1.2 176 5.2 198 2.8' fill='none' stroke='%23c0512b' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0 7px;
+  transition: background-size 0.45s cubic-bezier(0.45, 0.05, 0.25, 1), color 0.2s ease;
 }
 
 .work__tag {
@@ -214,7 +322,11 @@ a { color: inherit; }
   white-space: nowrap;
 }
 
-.work__link:hover .work__title { color: var(--rust); }
+.work__link:hover .work__title,
+.work__link:focus-visible .work__title {
+  color: var(--rust);
+  background-size: 100% 7px;
+}
 
 /* ── Clients ───────────────────────────────────────────────── */
 
@@ -243,8 +355,9 @@ a { color: inherit; }
   background: var(--cream-dim);
   color: var(--ink-soft);
   font-family: var(--font-display);
-  font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.3125rem);
-  letter-spacing: 0.01em;
+  font-size: clamp(1rem, 0.94rem + 0.32vw, 1.1875rem);
+  font-weight: 500;
+  letter-spacing: -0.005em;
   text-align: center;
   transition: color 0.2s ease;
 }
@@ -274,8 +387,10 @@ a { color: inherit; }
 
 .about__lead {
   font-family: var(--font-display);
-  font-size: clamp(1.375rem, 1.15rem + 1vw, 1.875rem);
-  line-height: 1.3;
+  font-size: clamp(1.3125rem, 1.1rem + 0.95vw, 1.75rem);
+  font-weight: 400;
+  line-height: 1.32;
+  letter-spacing: -0.025em;
   color: var(--ink) !important;
   margin-bottom: 1.75rem !important;
 }
@@ -314,10 +429,16 @@ a { color: inherit; }
 .cta__title {
   margin: 0 0 2.25rem;
   font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(2.75rem, 1.8rem + 4.5vw, 5rem);
+  font-weight: 500;
+  font-size: clamp(2.5rem, 1.7rem + 4vw, 4.5rem);
   line-height: 1.02;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.045em;
+}
+
+.cta__row {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.75rem;
 }
 
 .cta__link {
@@ -329,14 +450,33 @@ a { color: inherit; }
   letter-spacing: 0.18em;
   text-transform: uppercase;
   text-decoration: none;
-  transition: border-color 0.2s ease, opacity 0.2s ease;
+  transition: border-color 0.2s ease;
 }
 
-.cta__link:hover {
-  border-bottom-color: var(--cream);
-}
+.cta__link:hover { border-bottom-color: var(--cream); }
 
 .cta :focus-visible { outline-color: var(--cream); }
+
+.doodle--arrow {
+  flex: 0 0 auto;
+  width: clamp(96px, 12vw, 150px);
+  height: auto;
+  margin-bottom: -4px;
+  color: var(--cream);
+}
+
+.doodle--arrow path { stroke-width: 2.2; }
+
+.doodle--ready.doodle--arrow path:nth-child(2) { transition-delay: 0.55s; }
+
+.doodle--arrow.is-drawn {
+  animation: arrow-nudge 3.2s ease-in-out 1.2s infinite;
+}
+
+@keyframes arrow-nudge {
+  0%, 100%   { transform: translateX(0); }
+  50%        { transform: translateX(-7px); }
+}
 
 /* ── Footer ────────────────────────────────────────────────── */
 
@@ -349,18 +489,40 @@ a { color: inherit; }
 .site-footer .shell {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
+  gap: 0.75rem 1.5rem;
   justify-content: space-between;
+  align-items: center;
 }
 
 .site-footer a {
   text-decoration: none;
-  border-bottom: 1px solid var(--rule);
-  padding-bottom: 2px;
-  transition: border-color 0.2s ease;
 }
 
-.site-footer a:hover { border-bottom-color: var(--ink); }
+.footer__email {
+  position: relative;
+  display: inline-block;
+}
+
+.doodle--squiggle {
+  position: absolute;
+  left: 0;
+  bottom: -7px;
+  width: 100%;
+  height: 8px;
+  color: var(--blue);
+}
+
+.footer__circled {
+  position: relative;
+  display: inline-block;
+  margin-inline: 9px 15px;
+}
+
+.doodle--ellipse-footer {
+  color: var(--blue);
+  width: calc(100% + 42px);
+  height: calc(100% + 22px);
+}
 
 /* ── Responsive ────────────────────────────────────────────── */
 
@@ -392,11 +554,22 @@ a { color: inherit; }
   .clients {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  /* No room to point at anything */
+  .doodle--arrow { display: none; }
+
+  .doodle--sun {
+    width: 46px;
+    height: 46px;
+    top: -0.25rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *,
+  *::before,
+  *::after {
     transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
+    animation: none !important;
   }
 }

@@ -5,6 +5,7 @@ A single-page static portfolio. No build step, no dependencies.
 ```
 index.html          # all page content
 styles.css          # all styles
+doodles.js          # draw-on-scroll animation for the hand-drawn marks
 assets/img/*.svg    # placeholder images (swap for real photos)
 assets/favicon.svg
 ```
@@ -44,15 +45,29 @@ with an `<img>` — the grid cell sizing already handles it.
 
 ## Type
 
-Inter for everything except the display serif (Playfair Display), which
-covers the name, work titles, client names, and section headlines. Both
-load from Google Fonts.
+Inter throughout, loaded from Google Fonts. Display sizes (the name, the
+contact headline, work titles) carry their own tighter tracking and a
+heavier weight, since Inter needs more negative letter-spacing than a
+serif does at that scale. `--font-display` is still its own variable, so
+a second face can be dropped back in later without touching markup.
 
-To make the site all-Inter, change one line in `styles.css`:
+## Hand-drawn marks
 
-```css
---font-display: var(--font-sans);
-```
+Eight inline SVG doodles: the sun by the name, the underline beneath it,
+the brace closing the image strip, the ellipse around "Selected Work",
+the arrow pointing at the contact link, the underline under the footer
+email, the ellipse in the footer, and a squiggle that draws itself under
+each work title on hover.
+
+`doodles.js` measures each path and animates `stroke-dashoffset` when the
+mark scrolls into view, so they draw themselves once. If JavaScript is
+off — or the visitor has "reduce motion" set — the script bails out early
+and every mark renders fully drawn, no animation.
+
+To add another: drop an inline `<svg class="doodle">` next to whatever it
+should annotate, give it `color` in CSS, and the script picks it up. Use
+`vector-effect="non-scaling-stroke"` on any mark that gets stretched with
+`preserveAspectRatio="none"`, or the stroke thickness will distort.
 
 ## Colors
 
