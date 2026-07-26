@@ -1,0 +1,402 @@
+/* ============================================================
+   Mary Nunes — portfolio
+   Type: Inter (UI, body, labels) + Playfair Display (display serif)
+   To go all-Inter, set --font-display to var(--font-sans) below.
+   ============================================================ */
+
+:root {
+  --font-sans:    "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+
+  --cream:     #faf6ea;
+  --cream-dim: #f2ecdc;
+  --ink:       #14110e;
+  --ink-soft:  #4d463c;
+  --rust:      #c0512b;
+  --blue:      #10459b;
+  --rule:      rgba(20, 17, 14, 0.14);
+
+  --shell:  1120px;
+  --gutter: clamp(1.25rem, 5vw, 3.5rem);
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  line-height: 1.6;
+  font-feature-settings: "cv05" 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--rust);
+  outline-offset: 3px;
+}
+
+.shell {
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--ink);
+  color: var(--cream);
+  padding: 0.75rem 1rem;
+  z-index: 10;
+}
+.skip-link:focus { left: 0; }
+
+/* ── Shared bits ───────────────────────────────────────────── */
+
+.eyebrow {
+  margin: 0 0 2rem;
+  color: var(--rust);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.rule-accent {
+  width: 52px;
+  height: 0;
+  margin: 0 0 1.75rem;
+  border: 0;
+  border-top: 2px solid var(--rust);
+}
+
+.section {
+  padding-block: clamp(4rem, 9vw, 7.5rem);
+}
+
+/* ── Header ────────────────────────────────────────────────── */
+
+.site-header {
+  padding-top: clamp(1.5rem, 3vw, 2.75rem);
+}
+
+.site-header .shell {
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: clamp(1.5rem, 4vw, 3.25rem);
+}
+
+.nav a {
+  font-size: 0.9375rem;
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.nav a:hover { border-bottom-color: var(--ink); }
+
+/* ── Hero ──────────────────────────────────────────────────── */
+
+.hero { padding-top: clamp(3rem, 8vw, 6rem); }
+
+.hero__name {
+  margin: 0 0 1.75rem;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(4.5rem, 20vw, 16rem);
+  line-height: 0.84;
+  letter-spacing: -0.015em;
+}
+
+.hero__name span { display: block; }
+
+.hero__intro {
+  margin: 0;
+  max-width: 34ch;
+  font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.375rem);
+  line-height: 1.45;
+}
+
+.hero__intro em {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--rust);
+}
+
+/* Image strip — scrolls horizontally on small screens */
+.strip {
+  margin-top: clamp(3rem, 7vw, 5rem);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.strip::-webkit-scrollbar { display: none; }
+
+.strip__track {
+  display: flex;
+  gap: clamp(0.75rem, 1.6vw, 1.5rem);
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  min-width: min-content;
+}
+
+.strip__item {
+  flex: 1 0 clamp(140px, 18vw, 200px);
+  margin: 0;
+}
+
+.strip__item img {
+  width: 100%;
+  aspect-ratio: 5 / 8;
+  object-fit: cover;
+}
+
+/* ── Selected work ─────────────────────────────────────────── */
+
+.work {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+
+.work__row { border-bottom: 1px solid var(--rule); }
+
+.work__link {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr auto;
+  align-items: baseline;
+  gap: 1rem;
+  padding: clamp(1.1rem, 2.2vw, 1.6rem) 0;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.work__num {
+  color: var(--rust);
+  font-size: 0.9375rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.work__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.75rem);
+  line-height: 1.25;
+  transition: color 0.2s ease;
+}
+
+.work__tag {
+  color: var(--ink-soft);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.work__link:hover .work__title { color: var(--rust); }
+
+/* ── Clients ───────────────────────────────────────────────── */
+
+.section--clients {
+  padding-block: clamp(3.5rem, 8vw, 6.5rem);
+  background: var(--cream-dim);
+}
+
+.clients {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+
+.clients__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(88px, 11vw, 118px);
+  padding: 1rem;
+  background: var(--cream-dim);
+  color: var(--ink-soft);
+  font-family: var(--font-display);
+  font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.3125rem);
+  letter-spacing: 0.01em;
+  text-align: center;
+  transition: color 0.2s ease;
+}
+
+.clients__item:hover { color: var(--ink); }
+
+/* ── About ─────────────────────────────────────────────────── */
+
+.about {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: start;
+}
+
+.about__portrait img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.about__body p {
+  margin: 0 0 1.25rem;
+  max-width: 62ch;
+  color: var(--ink-soft);
+}
+
+.about__lead {
+  font-family: var(--font-display);
+  font-size: clamp(1.375rem, 1.15rem + 1vw, 1.875rem);
+  line-height: 1.3;
+  color: var(--ink) !important;
+  margin-bottom: 1.75rem !important;
+}
+
+.about__lead em {
+  font-style: italic;
+  color: var(--rust);
+}
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0 2rem;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+
+.services li {
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.9375rem;
+}
+
+/* ── Contact ───────────────────────────────────────────────── */
+
+.cta {
+  background: var(--blue);
+  color: var(--cream);
+  padding-block: clamp(4rem, 9vw, 7rem);
+}
+
+.cta .rule-accent { border-top-color: var(--rust); }
+
+.cta__title {
+  margin: 0 0 2.25rem;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.75rem, 1.8rem + 4.5vw, 5rem);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+}
+
+.cta__link {
+  display: inline-block;
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid var(--rust);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.cta__link:hover {
+  border-bottom-color: var(--cream);
+}
+
+.cta :focus-visible { outline-color: var(--cream); }
+
+/* ── Footer ────────────────────────────────────────────────── */
+
+.site-footer {
+  padding-block: clamp(1.75rem, 3vw, 2.5rem);
+  font-size: 0.9375rem;
+  color: var(--ink-soft);
+}
+
+.site-footer .shell {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  justify-content: space-between;
+}
+
+.site-footer a {
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 2px;
+  transition: border-color 0.2s ease;
+}
+
+.site-footer a:hover { border-bottom-color: var(--ink); }
+
+/* ── Responsive ────────────────────────────────────────────── */
+
+@media (max-width: 760px) {
+  .about {
+    grid-template-columns: 1fr;
+  }
+
+  .about__portrait {
+    max-width: 320px;
+  }
+
+  .work__link {
+    grid-template-columns: 3rem 1fr;
+    row-gap: 0.5rem;
+  }
+
+  .work__tag {
+    grid-column: 2;
+    text-align: left;
+    white-space: normal;
+  }
+
+  .strip__item {
+    flex: 0 0 clamp(128px, 42vw, 170px);
+  }
+
+  /* Two up, rather than one very tall column */
+  .clients {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

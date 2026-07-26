@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 600" width="480" height="600" role="img" aria-label="Placeholder image">
+  <rect width="480" height="600" fill="#e6dfcc"/>
+  <circle cx="240.0" cy="240.0" r="81.60000000000001" fill="#c3b696" opacity="0.55"/>
+  <rect x="134.4" y="360.0" width="211.2" height="132.0" fill="#c3b696" opacity="0.35"/>
+  <text x="50%" y="558.0" text-anchor="middle" font-family="Inter, system-ui, sans-serif"
+        font-size="14" letter-spacing="3" fill="#4d463c" opacity="0.7">PORTRAIT</text>
+</svg>
