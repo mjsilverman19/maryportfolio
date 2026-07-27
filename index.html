@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <a class="skip-link" href="#work">Skip to selected work</a>
+  <a class="skip-link" href="#work">Skip to content</a>
 
   <header class="site-header">
     <div class="shell">
@@ -69,77 +69,81 @@
         </p>
       </div>
 
-      <div id="work" class="strip" role="region" aria-roledescription="carousel" aria-label="Selected work">
-        <div class="strip__chrome shell">
-          <h2 class="eyebrow strip__label">Selected Work</h2>
-          <div class="strip__controls" hidden>
-            <button type="button" class="strip__btn" data-strip-prev aria-controls="work-track" aria-label="Previous work">
-              <span aria-hidden="true">&larr;</span>
-            </button>
-            <button type="button" class="strip__btn" data-strip-next aria-controls="work-track" aria-label="Next work">
-              <span aria-hidden="true">&rarr;</span>
-            </button>
-          </div>
-        </div>
-
-        <div id="work-track" class="strip__track" tabindex="0" aria-live="polite">
-          <a class="strip__item" href="#">
-            <img src="assets/img/strip-01.svg" alt="" width="300" height="480">
-            <span class="strip__meta">
-              <span class="strip__num">01</span>
-              <span class="strip__title">A Weekend Guide for Slow Travelers</span>
-              <span class="strip__tag">Travel</span>
-            </span>
-          </a>
-          <a class="strip__item" href="#">
-            <img src="assets/img/strip-02.svg" alt="" width="300" height="480">
-            <span class="strip__meta">
-              <span class="strip__num">02</span>
-              <span class="strip__title">How to Build a Skincare Routine That Sticks</span>
-              <span class="strip__tag">Branded Content</span>
-            </span>
-          </a>
-          <a class="strip__item" href="#">
-            <img src="assets/img/strip-03.svg" alt="" width="300" height="480">
-            <span class="strip__meta">
-              <span class="strip__num">03</span>
-              <span class="strip__title">Why Brand Storytelling Still Matters</span>
-              <span class="strip__tag">Thought Leadership</span>
-            </span>
-          </a>
-          <a class="strip__item" href="#">
-            <img src="assets/img/strip-04.svg" alt="" width="300" height="480">
-            <span class="strip__meta">
-              <span class="strip__num">04</span>
-              <span class="strip__title">The Quiet Rise of the Two-Minute Ritual</span>
-              <span class="strip__tag">Editorial</span>
-            </span>
-          </a>
-          <a class="strip__item" href="#">
-            <img src="assets/img/strip-05.svg" alt="" width="300" height="480">
-            <span class="strip__meta">
-              <span class="strip__num">05</span>
-              <span class="strip__title">Notes on Writing a Product Page That Sells</span>
-              <span class="strip__tag">Copywriting</span>
-            </span>
-          </a>
-          <a class="strip__item" href="#">
-            <img src="assets/img/strip-01.svg" alt="" width="300" height="480">
-            <span class="strip__meta">
-              <span class="strip__num">06</span>
-              <span class="strip__title">Sunscreen, Reconsidered</span>
-              <span class="strip__tag">Branded Content</span>
-            </span>
-          </a>
+      <div class="strip" role="group" aria-label="Selected imagery">
+        <div class="strip__track">
+          <figure class="strip__item"><img src="assets/img/strip-01.svg" alt="" width="300" height="480"></figure>
+          <figure class="strip__item"><img src="assets/img/strip-02.svg" alt="" width="300" height="480"></figure>
+          <figure class="strip__item"><img src="assets/img/strip-03.svg" alt="" width="300" height="480"></figure>
+          <figure class="strip__item"><img src="assets/img/strip-04.svg" alt="" width="300" height="480"></figure>
+          <figure class="strip__item"><img src="assets/img/strip-05.svg" alt="" width="300" height="480"></figure>
 
           <!-- doodle: brace closing the row -->
-          <div class="strip__brace" aria-hidden="true">
-            <svg class="doodle doodle--brace" viewBox="0 0 24 260" preserveAspectRatio="none">
+          <div class="strip__brace">
+            <svg class="doodle doodle--brace" viewBox="0 0 24 260" preserveAspectRatio="none" aria-hidden="true">
               <path vector-effect="non-scaling-stroke"
                     d="M5.4 3.6c9.6 8.8 6.4 20.4 7.1 40.6.4 12 .2 45.4 1 61.4.5 10.6 4.6 20.8 10.1 24.2-5.4 3.2-9.6 13.6-10.1 24.2-.8 16-.6 49.4-1 61.4-.7 20.2 2.5 31.8-7.1 40.6"/>
             </svg>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ── Selected work ──────────────────────────────────────── -->
+    <section id="work" class="section">
+      <div class="shell">
+        <h2 class="eyebrow eyebrow--circled">
+          <span class="eyebrow__text">Selected Work</span>
+          <!-- doodle: ellipse around the label -->
+          <svg class="doodle doodle--ellipse" viewBox="0 0 190 44" preserveAspectRatio="none" aria-hidden="true">
+            <path vector-effect="non-scaling-stroke"
+                  d="M103 4.6c46-.6 81 6.8 82.8 17.4 1.7 10.4-33 19.6-83 20.4-49.6.8-85-7-86.6-17.6C14.7 14.4 48 5.8 97 4.6c17-.4 33 .2 46 1.9"/>
+          </svg>
+        </h2>
+
+        <ol class="work">
+          <li class="work__row">
+            <a class="work__link" href="#">
+              <span class="work__num">01</span>
+              <span class="work__title">A Weekend Guide for Slow Travelers</span>
+              <span class="work__tag">Travel</span>
+            </a>
+          </li>
+          <li class="work__row">
+            <a class="work__link" href="#">
+              <span class="work__num">02</span>
+              <span class="work__title">How to Build a Skincare Routine That Sticks</span>
+              <span class="work__tag">Branded Content</span>
+            </a>
+          </li>
+          <li class="work__row">
+            <a class="work__link" href="#">
+              <span class="work__num">03</span>
+              <span class="work__title">Why Brand Storytelling Still Matters</span>
+              <span class="work__tag">Thought Leadership</span>
+            </a>
+          </li>
+          <li class="work__row">
+            <a class="work__link" href="#">
+              <span class="work__num">04</span>
+              <span class="work__title">The Quiet Rise of the Two-Minute Ritual</span>
+              <span class="work__tag">Editorial</span>
+            </a>
+          </li>
+          <li class="work__row">
+            <a class="work__link" href="#">
+              <span class="work__num">05</span>
+              <span class="work__title">Notes on Writing a Product Page That Sells</span>
+              <span class="work__tag">Copywriting</span>
+            </a>
+          </li>
+          <li class="work__row">
+            <a class="work__link" href="#">
+              <span class="work__num">06</span>
+              <span class="work__title">Sunscreen, Reconsidered</span>
+              <span class="work__tag">Branded Content</span>
+            </a>
+          </li>
+        </ol>
       </div>
     </section>
 
@@ -252,6 +256,5 @@
   </footer>
 
   <script src="doodles.js" defer></script>
-  <script src="carousel.js" defer></script>
 </body>
 </html>
