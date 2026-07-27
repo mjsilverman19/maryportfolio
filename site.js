@@ -41,6 +41,25 @@
     "email & social"
   ];
 
+  /* Reserve the tallest height the tagline needs across all roles, so the
+     brief empty moment between words can't collapse it a line and bump
+     every section below. Re-measured on resize. */
+  function reserveTagline() {
+    var el = document.getElementById("type-role");
+    if (!el) return;
+    var para = el.closest("p");
+    if (!para) return;
+    var saved = el.textContent;
+    para.style.minHeight = "";
+    var max = 0;
+    roles.forEach(function (r) {
+      el.textContent = r;
+      if (para.offsetHeight > max) max = para.offsetHeight;
+    });
+    el.textContent = saved;
+    para.style.minHeight = max + "px";
+  }
+
   function initTyping() {
     var el = document.getElementById("type-role");
     if (!el || reduceMotion) return; // leave the first role in place
@@ -154,9 +173,16 @@
 
   function init() {
     initHovers();
+    reserveTagline();
     initTyping();
     initCarousel();
     initDoodles();
+
+    var resizeTimer;
+    window.addEventListener("resize", function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(reserveTagline, 150);
+    });
   }
 
   if (document.readyState === "loading") {
