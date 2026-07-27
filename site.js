@@ -178,6 +178,14 @@
     initCarousel();
     initDoodles();
 
+    // The reserved height depends on how the text wraps, which changes once
+    // the Inter web font swaps in — so re-measure after fonts are ready (and
+    // again on full load) rather than trusting the fallback-font layout.
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(reserveTagline);
+    }
+    window.addEventListener("load", reserveTagline);
+
     var resizeTimer;
     window.addEventListener("resize", function () {
       clearTimeout(resizeTimer);
