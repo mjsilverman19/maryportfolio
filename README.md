@@ -1,13 +1,16 @@
 # Mary Nunes — portfolio site
 
-A single-page static portfolio. No build step, no dependencies.
+A single-page static portfolio. No build step, no framework, no CDN at
+runtime — just HTML, one script, and images.
 
 ```
-index.html          # all page content
-styles.css          # all styles
-doodles.js          # draw-on-scroll animation for the hand-drawn marks
-assets/img/*.svg    # placeholder images (swap for real photos)
+index.html          # the page (styles are inline, per the design export)
+site.js             # typing tagline, work carousel, hover, draw-on-scroll doodles
+assets/img/         # portrait (mary.jpeg)
+assets/work/        # work-card images, one per client
+assets/logos/       # client logos for the marquee
 assets/favicon.svg
+design/             # editable design-tool source (see below)
 ```
 
 ## Run it locally
@@ -18,66 +21,63 @@ Open `index.html` in a browser, or:
 python3 -m http.server 8000
 ```
 
-## Deploying
+## What's on the page
 
-Any static host works — Netlify, Vercel, Cloudflare Pages, GitHub Pages.
-Drag the folder in, or point the host at this repo. No build command,
-publish directory is the repo root.
+- **Hero** with a tagline that types through the services Mary offers.
+- **Selected Work** — a horizontal carousel of client pieces (real
+  imagery, prev/next buttons, a scroll progress bar). Each card links to
+  the brand.
+- **Clients** — an auto-scrolling logo marquee that pauses on hover.
+- **About** — portrait plus bio.
+- **Contact** — the blue "Let's work together" band and footer.
+- **Hand-drawn doodles** throughout (sun, underlines, circled labels, the
+  arrow by the contact link) that draw themselves in on scroll. With
+  JavaScript off or "reduce motion" set, they render fully drawn and the
+  page still works — the tagline just shows the first service instead of
+  typing.
 
-## Swapping in real content
+## Editing content
 
-**Copy.** Everything is placeholder text. The pieces to replace live in
-`index.html`: the intro line under the name, the six `.work__row` items,
-the About paragraphs (each one starts with the word "Placeholder"), the
-services list, and the email address (`mary@nuneswriting.com`, which
-appears in the CTA link and the footer).
+Copy and layout live directly in `index.html` as inline styles (this is
+how the design tool exports). The quickest things to change:
 
-**Work links.** Each work item points at `href="#"` — swap in the real URL.
-
-**Images.** Drop real files into `assets/img/` and update the `src`
-attributes. The hero strip images are cropped to 5:8 portrait and the
-About portrait to 4:5, so anything roughly that shape will look right.
-JPGs around 600×960 (strip) and 960×1200 (portrait) are plenty.
-
-**Clients.** The ten client names are rendered as type, not logos, in the
-`.clients` list. If real logo files show up later, replace each `<li>`
-with an `<img>` — the grid cell sizing already handles it.
-
-## Type
-
-Inter throughout, loaded from Google Fonts. Display sizes (the name, the
-contact headline, work titles) carry their own tighter tracking and a
-heavier weight, since Inter needs more negative letter-spacing than a
-serif does at that scale. `--font-display` is still its own variable, so
-a second face can be dropped back in later without touching markup.
-
-## Hand-drawn marks
-
-Eight inline SVG doodles: the sun by the name, the underline beneath it,
-the brace closing the image strip, the ellipse around "Selected Work",
-the arrow pointing at the contact link, the underline under the footer
-email, the ellipse in the footer, and a squiggle that draws itself under
-each work title on hover.
-
-`doodles.js` measures each path and animates `stroke-dashoffset` when the
-mark scrolls into view, so they draw themselves once. If JavaScript is
-off — or the visitor has "reduce motion" set — the script bails out early
-and every mark renders fully drawn, no animation.
-
-To add another: drop an inline `<svg class="doodle">` next to whatever it
-should annotate, give it `color` in CSS, and the script picks it up. Use
-`vector-effect="non-scaling-stroke"` on any mark that gets stretched with
-`preserveAspectRatio="none"`, or the stroke thickness will distort.
+- **Tagline services** — the rotating list is the `roles` array at the top
+  of `site.js`, and the first one is also hard-coded in the hero `<em>` so
+  it shows before the animation starts.
+- **Work cards** — each is an `<a href="…">` in the `#work-track` block:
+  brand name, title, category label, link, and `assets/work/<brand>` image.
+- **Client logos** — the marquee lists each logo twice (that's what makes
+  the loop seamless); update both copies, or none.
+- **About copy** — the paragraphs beginning "Placeholder copy" and the
+  services list below them.
+- **Email** — `mary@nuneswriting.com`, in both the contact link and footer.
 
 ## Colors
 
-Defined as custom properties at the top of `styles.css`:
+Design tokens are CSS custom properties in the `<style>` block in
+`index.html`:
 
 | Token | Value | Used for |
 | --- | --- | --- |
 | `--cream` | `#faf6ea` | page background |
-| `--cream-dim` | `#f2ecdc` | clients band |
-| `--ink` | `#14110e` | headings, body |
+| `--ink` | `#14110e` | headings, body, work-card backgrounds |
 | `--ink-soft` | `#4d463c` | secondary text |
-| `--rust` | `#c0512b` | accents, rules, numbers |
-| `--blue` | `#10459b` | contact band |
+| `--rust` | `#E0617E` | pink accent — labels, doodles, links on hover |
+| `--blue` | `#11459c` | contact band |
+
+## Editable design source
+
+`design/` holds the original design-tool export (`Mary Nunes
+Portfolio.dc.html` and its `support.js` runtime). That format is for
+re-opening and editing in the tool — it loads React and a compiler from a
+CDN at runtime, so it is **not** what the site serves. The published site
+is the self-contained `index.html` + `site.js` above, which is a faithful
+port of that export. If you re-export from the tool, re-run the same port
+(resolve the `{{ }}` bindings and `style-hover` attributes into `site.js`)
+to keep the live site dependency-free.
+
+## Deploying
+
+Served by GitHub Pages from `main` at the repo root (`.nojekyll` keeps
+Pages from running Jekyll over it). Any static host works the same way —
+no build command, publish directory is the repo root.

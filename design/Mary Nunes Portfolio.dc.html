@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mary Nunes — Copywriter &amp; Brand Storyteller</title>
-  <meta name="description" content="Mary Nunes is a copywriter and brand storyteller for beauty and wellness brands — brand voice, campaigns, editorial, and packaging.">
-  <meta property="og:title" content="Mary Nunes — Copywriter &amp; Brand Storyteller">
-  <meta property="og:description" content="Copywriter and brand storyteller for beauty and wellness brands.">
-  <meta property="og:type" content="website">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;1,14..32,400;1,14..32,500&amp;display=swap" rel="stylesheet">
@@ -46,8 +44,8 @@
     @keyframes arrow-nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-7px); } }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0.01ms !important; animation: none !important; } }
   </style>
-</head>
-<body>
+</helmet>
+
 <div style="background: var(--cream); color: var(--ink); font-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem); line-height: 1.6; overflow-x: hidden">
 
   <header style="padding-top: clamp(1.5rem, 3vw, 2.75rem)">
@@ -88,7 +86,7 @@
         <path vector-effect="non-scaling-stroke" d="M3 13.2C68 4.6 148 1.9 232 3.4c38 .7 74 2.4 108 4.6 25 1.6 50 2 77-1.4"></path>
       </svg>
 
-      <p style="margin: 0; max-width: 40ch; font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.375rem); line-height: 1.45">Copywriter and brand storyteller who works on <em id="type-role" style="font-style: normal; color: var(--rust); white-space: nowrap">brand voice &amp; messaging</em><span aria-hidden="true" style="display: inline-block; color: var(--rust)">.</span><span aria-hidden="true" style="display: inline-block; width: 1px; margin-left: 1px; color: var(--rust); animation: caret-blink 1s step-end infinite">|</span></p>
+      <p style="margin: 0; max-width: 40ch; font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.375rem); line-height: 1.45">Copywriter and brand storyteller who works on <em ref="{{ typeRef }}" style="font-style: normal; color: var(--rust); white-space: nowrap">brand voice &amp; messaging</em><span aria-hidden="true" style="display: inline-block; color: var(--rust)">.</span><span aria-hidden="true" style="display: inline-block; width: 1px; margin-left: 1px; color: var(--rust); animation: caret-blink 1s step-end infinite">|</span></p>
     </div>
   </section>
 
@@ -104,16 +102,16 @@
         </h2>
 
         <div style="display: flex; gap: 0.6rem; margin-left: auto">
-          <button type="button" aria-label="Previous work" id="work-prev" style="width: 46px; height: 46px; display: grid; place-items: center; border: 1px solid var(--rule); border-radius: 50%; background: transparent; color: var(--ink); cursor: pointer; transition: background .2s ease, border-color .2s ease" style-hover="background: rgba(20,17,14,0.06); border-color: var(--ink)">
+          <button type="button" aria-label="Previous work" onClick="{{ prev }}" style="width: 46px; height: 46px; display: grid; place-items: center; border: 1px solid var(--rule); border-radius: 50%; background: transparent; color: var(--ink); cursor: pointer; transition: background .2s ease, border-color .2s ease" style-hover="background: rgba(20,17,14,0.06); border-color: var(--ink)">
             <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="display: block"><path d="M15 4 7 12l8 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
           </button>
-          <button type="button" aria-label="Next work" id="work-next" style="width: 46px; height: 46px; display: grid; place-items: center; border: 1px solid var(--rule); border-radius: 50%; background: transparent; color: var(--ink); cursor: pointer; transition: background .2s ease, border-color .2s ease" style-hover="background: rgba(20,17,14,0.06); border-color: var(--ink)">
+          <button type="button" aria-label="Next work" onClick="{{ next }}" style="width: 46px; height: 46px; display: grid; place-items: center; border: 1px solid var(--rule); border-radius: 50%; background: transparent; color: var(--ink); cursor: pointer; transition: background .2s ease, border-color .2s ease" style-hover="background: rgba(20,17,14,0.06); border-color: var(--ink)">
             <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="display: block"><path d="M9 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
           </button>
         </div>
       </div>
 
-      <div id="work-track" data-track="work" style="display: flex; gap: clamp(0.75rem, 1.6vw, 1.25rem); overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: clamp(1.5rem, 3vw, 2.25rem)">
+      <div data-track="work" ref="{{ trackRef }}" onScroll="{{ onScroll }}" style="display: flex; gap: clamp(0.75rem, 1.6vw, 1.25rem); overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: clamp(1.5rem, 3vw, 2.25rem)">
         <a href="https://www.aveda.com" target="_blank" rel="noopener" style="position: relative; display: block; flex: 0 0 clamp(238px, 29vw, 340px); aspect-ratio: 3 / 4; overflow: hidden; scroll-snap-align: start; text-decoration: none; color: var(--cream); background: var(--ink); transition: transform .45s cubic-bezier(0.2, 0.6, 0.2, 1)" style-hover="transform: translateY(-6px)">
           <img src="assets/work/aveda.jpg" alt="Aveda — A Wondrous World of Gifts" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
           <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(20,17,14,0.92) 0%, rgba(20,17,14,0.6) 34%, rgba(20,17,14,0.06) 68%)"></div>
@@ -216,12 +214,12 @@
       </div>
 
       <div aria-hidden="true" style="position: relative; height: 2px; background: var(--rule)">
-        <div id="work-bar" style="position: absolute; left: 0; top: 0; height: 2px; width: 34%; background: var(--rust)"></div>
+        <div ref="{{ barRef }}" style="position: absolute; left: 0; top: 0; height: 2px; width: 34%; background: var(--rust)"></div>
       </div>
     </div>
   </section>
 
-  
+  <sc-if value="{{ showClients }}" hint-placeholder-val="{{ true }}">
     <section id="clients" data-screen-label="Clients" style="padding-block: clamp(0.75rem, 1.5vw, 1.25rem); background: var(--cream)">
       <div style="max-width: var(--shell); margin-inline: auto; padding-inline: var(--gutter)">
                 <h2 style="position: relative; display: block; width: fit-content; margin: 0 0 clamp(0.5rem, 1vw, 0.9rem); color: var(--rust); font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase">
@@ -297,7 +295,7 @@
         </ul>
       </div>
     </section>
-  
+  </sc-if>
 
   <section id="about" data-screen-label="About" style="padding-block: clamp(4rem, 9vw, 7.5rem)">
     <div style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: clamp(2rem, 6vw, 5rem); max-width: var(--shell); margin-inline: auto; padding-inline: var(--gutter)">
@@ -374,6 +372,166 @@
     </div>
   </footer>
 </div>
-<script src="site.js" defer></script>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;brandAccent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#E0617E&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#E0617E&quot;,&quot;#90482C&quot;,&quot;#8E9DD2&quot;,&quot;#1F5459&quot;],&quot;section&quot;:&quot;Theme&quot;},&quot;bandColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#11459c&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#11459c&quot;,&quot;#90482C&quot;,&quot;#8E9DD2&quot;,&quot;#14110e&quot;],&quot;section&quot;:&quot;Theme&quot;},&quot;animateDoodles&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;showClients&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;}}">
+class Component extends DCLogic {
+  trackRef = React.createRef();
+  barRef = React.createRef();
+  typeRef = React.createRef();
+
+  roles = [
+    'brand voice & messaging',
+    'campaign & launch copy',
+    'editorial & long-form',
+    'product & packaging',
+    'thought leadership',
+    'email & social'
+  ];
+
+  componentDidMount() {
+    this.syncTokens();
+    this.primeDoodles();
+    this.updateBar();
+    this.onResize = () => this.updateBar();
+    window.addEventListener('resize', this.onResize);
+    this.startTyping();
+  }
+
+  startTyping() {
+    const el = this.typeRef.current;
+    if (!el) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let i = 0, pos = 0, deleting = false;
+    const tick = () => {
+      const word = this.roles[i];
+      pos += deleting ? -1 : 1;
+      el.textContent = word.slice(0, pos);
+      let delay = deleting ? 45 : 85;
+      if (!deleting && pos === word.length) { delay = 1600; deleting = true; }
+      else if (deleting && pos === 0) { deleting = false; i = (i + 1) % this.roles.length; delay = 320; }
+      this.typeTimer = setTimeout(tick, delay);
+    };
+    this.typeTimer = setTimeout(tick, 1600);
+  }
+
+  componentDidUpdate() {
+    this.syncTokens();
+    this.updateBar();
+  }
+
+  componentWillUnmount() {
+    if (this.io) this.io.disconnect();
+    window.removeEventListener('resize', this.onResize);
+    if (this.typeTimer) clearTimeout(this.typeTimer);
+  }
+
+  syncTokens() {
+    const r = document.documentElement.style;
+    r.setProperty('--rust', this.props.brandAccent ?? '#E0617E');
+    r.setProperty('--blue', this.props.bandColor ?? '#11459c');
+  }
+
+  /* ── carousel ─────────────────────────────────────────────── */
+
+  step() {
+    const t = this.trackRef.current;
+    if (!t) return 300;
+    const card = t.firstElementChild;
+    const gap = parseFloat(getComputedStyle(t).columnGap) || 0;
+    return card ? card.getBoundingClientRect().width + gap : t.clientWidth * 0.8;
+  }
+
+  updateBar() {
+    const t = this.trackRef.current;
+    const bar = this.barRef.current;
+    if (!t || !bar) return;
+    const max = t.scrollWidth - t.clientWidth;
+    const visible = t.clientWidth / Math.max(t.scrollWidth, 1);
+    const width = Math.min(1, Math.max(0.14, visible));
+    bar.style.width = (width * 100).toFixed(2) + '%';
+    const p = max > 0 ? t.scrollLeft / max : 0;
+    bar.style.left = (p * (100 - width * 100)).toFixed(2) + '%';
+  }
+
+  renderVals() {
+    const scrollBy = (dir) => {
+      const t = this.trackRef.current;
+      if (t) t.scrollBy({ left: dir * this.step(), behavior: 'smooth' });
+    };
+    return {
+      showClients: this.props.showClients ?? true,
+      trackRef: this.trackRef,
+      barRef: this.barRef,
+      typeRef: this.typeRef,
+      onScroll: () => this.updateBar(),
+      prev: () => scrollBy(-1),
+      next: () => scrollBy(1)
+    };
+  }
+
+  /* ── doodles ──────────────────────────────────────────────── */
+
+  primeDoodles() {
+    const animate = (this.props.animateDoodles ?? true)
+      && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      && 'IntersectionObserver' in window;
+    if (!animate) return;
+
+    const svgs = document.querySelectorAll('svg[data-doodle]');
+    if (!svgs.length) return;
+
+    this.io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        this.drawDoodle(e.target);
+        this.io.unobserve(e.target);
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -24px 0px' });
+
+    svgs.forEach((svg) => {
+      let primed = 0;
+      svg.querySelectorAll('path').forEach((p) => {
+        if (typeof p.getTotalLength !== 'function') return;
+        const len = p.getTotalLength();
+        if (!len) return;
+        p.style.strokeDasharray = len;
+        p.style.strokeDashoffset = len;
+        primed++;
+      });
+      if (primed) this.io.observe(svg);
+    });
+  }
+
+  drawDoodle(svg) {
+    const ease = 'cubic-bezier(0.45, 0.05, 0.25, 1)';
+    const kind = svg.getAttribute('data-doodle');
+
+    if (kind === 'sun') {
+      const core = svg.querySelector('[data-part="core"] path');
+      if (core) {
+        core.style.transition = 'stroke-dashoffset 0.5s ' + ease;
+        core.style.strokeDashoffset = '0';
+      }
+      const rays = svg.querySelector('[data-part="rays"]');
+      svg.querySelectorAll('[data-part="rays"] path').forEach((p, i) => {
+        p.style.transition = 'stroke-dashoffset 0.4s ' + ease + ' ' + (0.4 + i * 0.06).toFixed(2) + 's';
+        p.style.strokeDashoffset = '0';
+      });
+      if (rays) setTimeout(() => { rays.style.animation = 'sun-spin 54s linear infinite'; }, 1400);
+      return;
+    }
+
+    svg.querySelectorAll('path').forEach((p, i) => {
+      const delay = (kind === 'arrow' && i === 1) ? '0.55s' : '0s';
+      p.style.transition = 'stroke-dashoffset 1s ' + ease + ' ' + delay;
+      p.style.strokeDashoffset = '0';
+    });
+
+    if (kind === 'arrow') {
+      setTimeout(() => { svg.style.animation = 'arrow-nudge 3.2s ease-in-out infinite'; }, 1900);
+    }
+  }
+}
+</script>
 </body>
 </html>
