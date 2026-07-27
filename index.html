@@ -71,8 +71,8 @@
 
       <div id="work" class="strip" role="region" aria-roledescription="carousel" aria-label="Selected work">
         <div class="strip__chrome shell">
-          <h2 class="eyebrow strip__label">Selected Work</h2>
-          <div class="strip__controls" hidden>
+          <h2 class="strip__label">Selected Work</h2>
+          <div class="strip__controls">
             <button type="button" class="strip__btn" data-strip-prev aria-controls="work-track" aria-label="Previous work">
               <span aria-hidden="true">&larr;</span>
             </button>
@@ -82,62 +82,54 @@
           </div>
         </div>
 
-        <div id="work-track" class="strip__track" tabindex="0" aria-live="polite">
-          <a class="strip__item" href="#">
+        <div id="work-track" class="strip__track" tabindex="0">
+          <a class="strip__item" href="#" data-tone="sage">
             <img src="assets/img/strip-01.svg" alt="" width="300" height="480">
             <span class="strip__meta">
-              <span class="strip__num">01</span>
+              <span class="strip__kicker"><span class="strip__num">01</span> · Travel</span>
               <span class="strip__title">A Weekend Guide for Slow Travelers</span>
-              <span class="strip__tag">Travel</span>
             </span>
           </a>
-          <a class="strip__item" href="#">
+          <a class="strip__item" href="#" data-tone="mauve">
             <img src="assets/img/strip-02.svg" alt="" width="300" height="480">
             <span class="strip__meta">
-              <span class="strip__num">02</span>
+              <span class="strip__kicker"><span class="strip__num">02</span> · Branded Content</span>
               <span class="strip__title">How to Build a Skincare Routine That Sticks</span>
-              <span class="strip__tag">Branded Content</span>
             </span>
           </a>
-          <a class="strip__item" href="#">
+          <a class="strip__item" href="#" data-tone="slate">
             <img src="assets/img/strip-03.svg" alt="" width="300" height="480">
             <span class="strip__meta">
-              <span class="strip__num">03</span>
+              <span class="strip__kicker"><span class="strip__num">03</span> · Thought Leadership</span>
               <span class="strip__title">Why Brand Storytelling Still Matters</span>
-              <span class="strip__tag">Thought Leadership</span>
             </span>
           </a>
-          <a class="strip__item" href="#">
+          <a class="strip__item" href="#" data-tone="sand">
             <img src="assets/img/strip-04.svg" alt="" width="300" height="480">
             <span class="strip__meta">
-              <span class="strip__num">04</span>
+              <span class="strip__kicker"><span class="strip__num">04</span> · Editorial</span>
               <span class="strip__title">The Quiet Rise of the Two-Minute Ritual</span>
-              <span class="strip__tag">Editorial</span>
             </span>
           </a>
-          <a class="strip__item" href="#">
+          <a class="strip__item" href="#" data-tone="clay">
             <img src="assets/img/strip-05.svg" alt="" width="300" height="480">
             <span class="strip__meta">
-              <span class="strip__num">05</span>
+              <span class="strip__kicker"><span class="strip__num">05</span> · Copywriting</span>
               <span class="strip__title">Notes on Writing a Product Page That Sells</span>
-              <span class="strip__tag">Copywriting</span>
             </span>
           </a>
-          <a class="strip__item" href="#">
+          <a class="strip__item" href="#" data-tone="sage">
             <img src="assets/img/strip-01.svg" alt="" width="300" height="480">
             <span class="strip__meta">
-              <span class="strip__num">06</span>
+              <span class="strip__kicker"><span class="strip__num">06</span> · Branded Content</span>
               <span class="strip__title">Sunscreen, Reconsidered</span>
-              <span class="strip__tag">Branded Content</span>
             </span>
           </a>
+        </div>
 
-          <!-- doodle: brace closing the row -->
-          <div class="strip__brace" aria-hidden="true">
-            <svg class="doodle doodle--brace" viewBox="0 0 24 260" preserveAspectRatio="none">
-              <path vector-effect="non-scaling-stroke"
-                    d="M5.4 3.6c9.6 8.8 6.4 20.4 7.1 40.6.4 12 .2 45.4 1 61.4.5 10.6 4.6 20.8 10.1 24.2-5.4 3.2-9.6 13.6-10.1 24.2-.8 16-.6 49.4-1 61.4-.7 20.2 2.5 31.8-7.1 40.6"/>
-            </svg>
+        <div class="strip__progress shell" aria-hidden="true">
+          <div class="strip__progress-track">
+            <div class="strip__progress-bar" data-strip-progress></div>
           </div>
         </div>
       </div>

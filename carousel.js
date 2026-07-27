@@ -1,14 +1,14 @@
-/* Selected-work carousel: reveal prev/next when the track overflows. */
+/* Selected-work carousel: prev/next + scroll progress. */
 
 (function () {
   var root = document.querySelector('.strip');
   if (!root) return;
 
   var track = root.querySelector('.strip__track');
-  var controls = root.querySelector('.strip__controls');
   var prev = root.querySelector('[data-strip-prev]');
   var next = root.querySelector('[data-strip-next]');
-  if (!track || !controls || !prev || !next) return;
+  var progress = root.querySelector('[data-strip-progress]');
+  if (!track || !prev || !next) return;
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -25,13 +25,19 @@
   }
 
   function update() {
-    var overflow = maxScroll() > 4;
-    controls.hidden = !overflow;
-    if (!overflow) return;
-
+    var max = maxScroll();
     var left = track.scrollLeft;
+
     prev.disabled = left <= 2;
-    next.disabled = left >= maxScroll() - 2;
+    next.disabled = max <= 2 || left >= max - 2;
+
+    if (progress) {
+      var ratio = max <= 0 ? 1 : Math.min(1, Math.max(0, left / max));
+      var thumb = max <= 0 ? 100 : Math.max(18, (track.clientWidth / track.scrollWidth) * 100);
+      var travel = 100 - thumb;
+      progress.style.width = thumb + '%';
+      progress.style.marginLeft = (ratio * travel) + '%';
+    }
   }
 
   function scrollByDir(dir) {
