@@ -125,6 +125,27 @@
     sync();
   }
 
+  /* ── Gentle work-image movement ─────────────────────────────── */
+  function initWorkMotion() {
+    if (reduceMotion || !("IntersectionObserver" in window)) return;
+    var images = document.querySelectorAll("#work-track > a > img");
+    var visible = new Set();
+    function sync() {
+      images.forEach(function (img) {
+        img.style.animationPlayState = !document.hidden && visible.has(img) ? "running" : "paused";
+      });
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) visible.add(entry.target);
+        else visible.delete(entry.target);
+      });
+      sync();
+    }, { threshold: 0.15 });
+    images.forEach(function (img) { observer.observe(img); });
+    document.addEventListener("visibilitychange", sync);
+  }
+
   /* ── Work carousel ────────────────────────────────────────────── */
   function initCarousel() {
     var track = document.getElementById("work-track");
@@ -224,6 +245,7 @@
     reserveTagline();
     initTyping();
     initCarousel();
+    initWorkMotion();
     initDoodles();
     initLandscape();
 

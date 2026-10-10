@@ -53,6 +53,16 @@
       .hero-landscape { width: 160%; right: -32%; top: 48%; opacity: 0.22; }
     }
     [data-track]::-webkit-scrollbar { display: none; }
+    #work-track > a > img {
+      transform-origin: center;
+      animation: work-image-drift 20s ease-in-out infinite alternate;
+      animation-play-state: paused;
+    }
+    #work-track > a:nth-child(even) > img { animation-delay: -7s; }
+    @keyframes work-image-drift {
+      from { transform: scale(1.015); }
+      to { transform: scale(1.055); }
+    }
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     @keyframes caret-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
     @keyframes sun-spin { to { transform: rotate(360deg); } }
@@ -388,7 +398,7 @@
 
       <div style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0.75rem">
         <a href="mailto:mcnunes214@gmail.com" style="display: inline-block; padding-bottom: 0.55rem; border-bottom: 2px solid var(--cream); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; color: var(--cream); transition: border-color .2s ease" style-hover="border-bottom-color: var(--cream); color: var(--cream)">
-          Get in touch — <span style="text-transform: none; letter-spacing: normal; overflow-wrap: anywhere">mcnunes214@gmail.com</span>
+          Get in touch
         </a>
 
         <svg data-doodle="arrow" viewBox="0 0 150 56" aria-hidden="true" style="flex: 0 0 auto; width: clamp(84px, 12vw, 150px); height: auto; margin-bottom: -4px; color: var(--cream); overflow: visible; pointer-events: none">
