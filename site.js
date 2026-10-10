@@ -33,9 +33,9 @@
 
   /* ── Typing tagline ───────────────────────────────────────────── */
   var roles = [
-    "naming & packaging //",
-    "campaign concepting //",
-    "digital & social //",
+    "naming & packaging",
+    "campaign concepting",
+    "digital & social",
     "in-store merchandising"
   ];
 

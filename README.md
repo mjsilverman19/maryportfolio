@@ -23,7 +23,7 @@ python3 -m http.server 8000
 
 ## What's on the page
 
-- **Hero** with a tagline that types through Mary’s four focus areas, including the supplied `//` endings.
+- **Hero** with a tagline that types through Mary’s four focus areas.
 - **Selected Work** — a horizontal carousel of client pieces (real
   imagery, prev/next buttons, a scroll progress bar). Each card links to
   the brand.
