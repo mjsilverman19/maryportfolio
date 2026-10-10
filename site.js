@@ -75,6 +75,56 @@
     setTimeout(tick, 1600);
   }
 
+  /* ── Ambient landscape ────────────────────────────────────────
+     Native SVG path interpolation keeps the sketch continuous between
+     environments. The existing sun is independent of the landscape. */
+  function initLandscape() {
+    var svg = document.getElementById("hero-landscape");
+    if (!svg || typeof svg.pauseAnimations !== "function") return;
+    var motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var visible = true;
+    var installed = false;
+
+    function install() {
+      if (installed) return;
+      installed = true;
+      svg.querySelectorAll("[data-morph-values], [data-scene-opacity]").forEach(function (el) {
+        var morph = el.hasAttribute("data-morph-values");
+        var animation = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+        animation.setAttribute("attributeName", morph ? "d" : "opacity");
+        animation.setAttribute("values", el.getAttribute(morph ? "data-morph-values" : "data-scene-opacity"));
+        animation.setAttribute("keyTimes", "0;0.14;0.25;0.39;0.5;0.64;0.75;0.89;1");
+        animation.setAttribute("dur", "32s");
+        animation.setAttribute("repeatCount", "indefinite");
+        animation.setAttribute("calcMode", "spline");
+        animation.setAttribute("keySplines", Array(8).fill("0.45 0 0.55 1").join(";"));
+        el.appendChild(animation);
+      });
+      svg.setCurrentTime(0);
+    }
+
+    function sync() {
+      if (motion.matches) {
+        svg.pauseAnimations();
+        svg.setCurrentTime(0);
+        return;
+      }
+      install();
+      if (visible && !document.hidden) svg.unpauseAnimations();
+      else svg.pauseAnimations();
+    }
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        visible = entries[0].isIntersecting;
+        sync();
+      }).observe(svg);
+    }
+    document.addEventListener("visibilitychange", sync);
+    if (motion.addEventListener) motion.addEventListener("change", sync);
+    sync();
+  }
+
   /* ── Work carousel ────────────────────────────────────────────── */
   function initCarousel() {
     var track = document.getElementById("work-track");
@@ -175,6 +225,7 @@
     initTyping();
     initCarousel();
     initDoodles();
+    initLandscape();
 
     // The reserved height depends on how the text wraps, which changes once
     // the Inter web font swaps in — so re-measure after fonts are ready (and

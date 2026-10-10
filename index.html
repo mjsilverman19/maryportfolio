@@ -39,6 +39,18 @@
     img { display: block; max-width: 100%; height: auto; }
     :focus-visible { outline: 2px solid var(--rust); outline-offset: 3px; }
     svg[data-doodle] path { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .hero-landscape {
+      position: absolute; z-index: -1; pointer-events: none;
+      width: min(82vw, 920px); height: auto; right: -7%; top: 23%;
+      color: var(--rust); opacity: 0.2; overflow: visible;
+    }
+    .hero-landscape path {
+      fill: none; stroke: currentColor; stroke-width: 1.65;
+      stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke;
+    }
+    @media (max-width: 640px) {
+      .hero-landscape { width: 120%; right: -23%; top: 18%; opacity: 0.13; }
+    }
     [data-track]::-webkit-scrollbar { display: none; }
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     @keyframes caret-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
@@ -61,7 +73,40 @@
   </header>
 
   <section data-screen-label="Hero" style="padding-top: clamp(3rem, 8vw, 6rem); padding-bottom: clamp(2.5rem, 6vw, 4.5rem)">
-    <div style="position: relative; max-width: var(--shell); margin-inline: auto; padding-inline: var(--gutter)">
+    <div style="position: relative; isolation: isolate; max-width: var(--shell); margin-inline: auto; padding-inline: var(--gutter)">
+      <svg class="hero-landscape" id="hero-landscape" viewBox="0 0 850 310" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="landscape-fade">
+            <stop offset="0" stop-color="white" stop-opacity="0"></stop>
+            <stop offset="0.25" stop-color="white" stop-opacity="0.65"></stop>
+            <stop offset="0.55" stop-color="white"></stop>
+            <stop offset="1" stop-color="white" stop-opacity="0.4"></stop>
+          </linearGradient>
+          <mask id="landscape-mask"><rect width="850" height="310" fill="url(#landscape-fade)"></rect></mask>
+        </defs>
+        <g mask="url(#landscape-mask)">
+        <path data-landscape-line d="M20 166 C92 161 161 165 225 163 C294 161 354 165 420 162 C490 159 553 165 620 162 C690 159 757 164 830 160" data-morph-values="M20 166 C92 161 161 165 225 163 C294 161 354 165 420 162 C490 159 553 165 620 162 C690 159 757 164 830 160;M20 166 C92 161 161 165 225 163 C294 161 354 165 420 162 C490 159 553 165 620 162 C690 159 757 164 830 160;M20 190 C85 170 133 117 225 68 C252 88 349 158 420 181 C474 142 550 70 620 38 C674 88 752 160 830 179;M20 190 C85 170 133 117 225 68 C252 88 349 158 420 181 C474 142 550 70 620 38 C674 88 752 160 830 179;M20 193 C77 172 147 113 225 122 C296 131 348 196 420 189 C489 182 548 116 620 124 C690 132 759 183 830 176;M20 193 C77 172 147 113 225 122 C296 131 348 196 420 189 C489 182 548 116 620 124 C690 132 759 183 830 176;M20 195 C100 128 148 126 225 158 C300 190 348 216 420 167 C492 118 551 93 620 135 C688 178 755 198 830 160;M20 195 C100 128 148 126 225 158 C300 190 348 216 420 167 C492 118 551 93 620 135 C688 178 755 198 830 160;M20 166 C92 161 161 165 225 163 C294 161 354 165 420 162 C490 159 553 165 620 162 C690 159 757 164 830 160"></path>
+        <path data-landscape-line d="M20 208 C88 205 155 223 225 215 C291 207 355 191 420 199 C488 207 554 224 620 214 C685 204 758 198 830 206" data-morph-values="M20 208 C88 205 155 223 225 215 C291 207 355 191 420 199 C488 207 554 224 620 214 C685 204 758 198 830 206;M20 208 C88 205 155 223 225 215 C291 207 355 191 420 199 C488 207 554 224 620 214 C685 204 758 198 830 206;M20 235 C94 205 154 150 225 139 C287 153 349 221 420 214 C487 205 554 130 620 116 C689 145 759 212 830 226;M20 235 C94 205 154 150 225 139 C287 153 349 221 420 214 C487 205 554 130 620 116 C689 145 759 212 830 226;M20 237 C92 234 151 199 225 194 C297 189 349 229 420 235 C490 241 551 199 620 195 C692 191 758 221 830 220;M20 237 C92 234 151 199 225 194 C297 189 349 229 420 235 C490 241 551 199 620 195 C692 191 758 221 830 220;M20 235 C93 216 148 191 225 210 C300 229 349 254 420 216 C491 178 550 176 620 200 C690 224 759 236 830 211;M20 235 C93 216 148 191 225 210 C300 229 349 254 420 216 C491 178 550 176 620 200 C690 224 759 236 830 211;M20 208 C88 205 155 223 225 215 C291 207 355 191 420 199 C488 207 554 224 620 214 C685 204 758 198 830 206"></path>
+        <path data-landscape-line d="M66 249 C131 241 183 262 245 252 C307 242 365 233 425 242 C484 251 541 261 602 253 C665 245 720 232 784 241" data-morph-values="M66 249 C131 241 183 262 245 252 C307 242 365 233 425 242 C484 251 541 261 602 253 C665 245 720 232 784 241;M66 249 C131 241 183 262 245 252 C307 242 365 233 425 242 C484 251 541 261 602 253 C665 245 720 232 784 241;M66 261 C128 247 178 230 245 235 C309 240 367 261 425 258 C487 256 543 239 602 234 C666 230 724 250 784 254;M66 261 C128 247 178 230 245 235 C309 240 367 261 425 258 C487 256 543 239 602 234 C666 230 724 250 784 254;M66 267 C126 265 177 241 245 243 C308 245 365 269 425 267 C486 265 542 241 602 240 C665 239 723 259 784 257;M66 267 C126 265 177 241 245 243 C308 245 365 269 425 267 C486 265 542 241 602 240 C665 239 723 259 784 257;M66 267 C130 246 181 251 245 267 C308 283 363 279 425 254 C487 229 543 239 602 260 C662 281 723 276 784 254;M66 267 C130 246 181 251 245 267 C308 283 363 279 425 254 C487 229 543 239 602 260 C662 281 723 276 784 254;M66 249 C131 241 183 262 245 252 C307 242 365 233 425 242 C484 251 541 261 602 253 C665 245 720 232 784 241" opacity="0.65"></path>
+          <g data-scene-opacity="1;1;0;0;0;0;0;0;1">
+            <path d="M680 205 C683 185 680 153 673 126 M673 127 C657 108 641 110 632 122 M674 126 C683 105 704 105 718 117 M674 126 C659 120 645 124 640 137 M676 125 C691 121 706 125 711 138"></path>
+            <path d="M465 186 C477 179 488 179 498 185 M520 177 C529 172 539 173 547 177"></path>
+          </g>
+          <g opacity="0" data-scene-opacity="0;0;1;1;0;0;0;0;0">
+            <path d="M698 229 C699 211 698 191 698 170 M698 171 L685 192 L695 191 M698 171 L711 191 L703 191 M696 185 L678 211 L693 208 M701 185 L719 211 L704 208"></path>
+            <path d="M603 55 L615 74 L628 66 M214 81 L226 96 L238 90"></path>
+          </g>
+          <g opacity="0" data-scene-opacity="0;0;0;0;1;1;0;0;0">
+            <path d="M676 236 C675 225 672 218 667 212 M676 236 C677 222 682 215 687 212 M676 236 C668 230 663 230 658 231 M715 239 C714 231 715 223 718 218"></path>
+            <path d="M583 187 C586 183 590 183 593 186 M619 174 C623 170 628 171 631 174"></path>
+          </g>
+          <g opacity="0" data-scene-opacity="0;0;0;0;0;0;1;1;0">
+            <path d="M688 227 L688 176 C688 166 700 166 700 176 L700 227 M688 207 L677 207 C671 207 670 202 670 197 L670 187 M700 194 L709 194 C715 194 718 190 718 184 L718 176"></path>
+            <path d="M598 245 C606 241 615 242 621 247 M742 239 C748 235 756 236 762 240"></path>
+          </g>
+        </g>
+      </svg>
+
 
       <svg data-doodle="sun" viewBox="0 0 80 80" aria-hidden="true" style="position: absolute; top: clamp(-0.5rem, 1vw, 1rem); right: var(--gutter); width: clamp(46px, 7vw, 82px); height: clamp(46px, 7vw, 82px); color: var(--rust); overflow: visible; pointer-events: none">
         <g data-part="core">
