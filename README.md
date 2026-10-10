@@ -5,7 +5,7 @@ runtime — just HTML, one script, and images.
 
 ```
 index.html          # the page (styles are inline, per the design export)
-site.js             # typing tagline, work carousel, hover, draw-on-scroll doodles
+site.js             # work carousel, hover, draw-on-scroll doodles
 assets/img/         # portrait (mary.jpeg)
 assets/work/        # work-card images, one per client
 assets/logos/       # client logos for the marquee
@@ -23,7 +23,7 @@ python3 -m http.server 8000
 
 ## What's on the page
 
-- **Hero** with a tagline that types through the services Mary offers.
+- **Hero** with Mary’s introduction and four focus areas.
 - **Selected Work** — a horizontal carousel of client pieces (real
   imagery, prev/next buttons, a scroll progress bar). Each card links to
   the brand.
@@ -33,24 +33,20 @@ python3 -m http.server 8000
 - **Hand-drawn doodles** throughout (sun, underlines, circled labels, the
   arrow by the contact link) that draw themselves in on scroll. With
   JavaScript off or "reduce motion" set, they render fully drawn and the
-  page still works — the tagline just shows the first service instead of
-  typing.
+  page still works.
 
 ## Editing content
 
 Copy and layout live directly in `index.html` as inline styles (this is
 how the design tool exports). The quickest things to change:
 
-- **Tagline services** — the rotating list is the `roles` array at the top
-  of `site.js`, and the first one is also hard-coded in the hero `<em>` so
-  it shows before the animation starts.
+- **Introduction and focus areas** — the paragraph in the Hero section.
 - **Work cards** — each is an `<a href="…">` in the `#work-track` block:
   brand name, title, category label, link, and `assets/work/<brand>` image.
 - **Client logos** — the marquee lists each logo twice (that's what makes
   the loop seamless); update both copies, or none.
-- **About copy** — the paragraphs beginning "Placeholder copy" and the
-  services list below them.
-- **Email** — `mary@nuneswriting.com`, in both the contact link and footer.
+- **About copy** — the three biography paragraphs in `#about`.
+- **Email** — `mcnunes214@gmail.com`, in both the contact link and footer.
 
 ## Colors
 

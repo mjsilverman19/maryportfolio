@@ -1,5 +1,5 @@
 /* Mary Nunes portfolio — self-contained interactivity.
-   Ported from the design-tool export's component logic (hover, typing,
+   Ported from the design-tool export's component logic (hover,
    work carousel, and draw-on-scroll doodles) with no framework or CDN. */
 
 (function () {
@@ -29,52 +29,6 @@
         el.setAttribute("style", base);
       });
     });
-  }
-
-  /* ── Typing tagline ───────────────────────────────────────────── */
-  var roles = [
-    "brand voice & messaging",
-    "campaign & launch copy",
-    "editorial & long-form",
-    "product & packaging",
-    "thought leadership",
-    "email & social"
-  ];
-
-  /* Reserve the tallest height the tagline needs across all roles, so the
-     brief empty moment between words can't collapse it a line and bump
-     every section below. Re-measured on resize. */
-  function reserveTagline() {
-    var el = document.getElementById("type-role");
-    if (!el) return;
-    var para = el.closest("p");
-    if (!para) return;
-    var saved = el.textContent;
-    para.style.minHeight = "";
-    var max = 0;
-    roles.forEach(function (r) {
-      el.textContent = r;
-      if (para.offsetHeight > max) max = para.offsetHeight;
-    });
-    el.textContent = saved;
-    para.style.minHeight = max + "px";
-  }
-
-  function initTyping() {
-    var el = document.getElementById("type-role");
-    if (!el || reduceMotion) return; // leave the first role in place
-
-    var i = 0, pos = 0, deleting = false;
-    function tick() {
-      var word = roles[i];
-      pos += deleting ? -1 : 1;
-      el.textContent = word.slice(0, pos);
-      var delay = deleting ? 45 : 85;
-      if (!deleting && pos === word.length) { delay = 1600; deleting = true; }
-      else if (deleting && pos === 0) { deleting = false; i = (i + 1) % roles.length; delay = 320; }
-      setTimeout(tick, delay);
-    }
-    setTimeout(tick, 1600);
   }
 
   /* ── Work carousel ────────────────────────────────────────────── */
@@ -173,24 +127,9 @@
 
   function init() {
     initHovers();
-    reserveTagline();
-    initTyping();
     initCarousel();
     initDoodles();
 
-    // The reserved height depends on how the text wraps, which changes once
-    // the Inter web font swaps in — so re-measure after fonts are ready (and
-    // again on full load) rather than trusting the fallback-font layout.
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(reserveTagline);
-    }
-    window.addEventListener("load", reserveTagline);
-
-    var resizeTimer;
-    window.addEventListener("resize", function () {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(reserveTagline, 150);
-    });
   }
 
   if (document.readyState === "loading") {
