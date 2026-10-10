@@ -22,6 +22,7 @@
       --rust: #E0617E;
       --blue: #11459c;
       --rule: rgba(20, 17, 14, 0.14);
+      --sketch-tan: #B39A7B;
       --shell: 1120px;
       --gutter: clamp(1.25rem, 5vw, 3.5rem);
     }
@@ -41,15 +42,15 @@
     svg[data-doodle] path { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
     .hero-landscape {
       position: absolute; z-index: -1; pointer-events: none;
-      width: min(82vw, 920px); height: auto; right: -7%; top: 23%;
-      color: var(--rust); opacity: 0.2; overflow: visible;
+      width: min(82vw, 920px); height: auto; right: -7%; top: 62%;
+      color: var(--sketch-tan); opacity: 0.28; overflow: visible;
     }
     .hero-landscape path {
       fill: none; stroke: currentColor; stroke-width: 1.65;
       stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke;
     }
     @media (max-width: 640px) {
-      .hero-landscape { width: 120%; right: -23%; top: 18%; opacity: 0.13; }
+      .hero-landscape { width: 120%; right: -23%; top: 60%; opacity: 0.22; }
     }
     [data-track]::-webkit-scrollbar { display: none; }
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -108,7 +109,7 @@
       </svg>
 
 
-      <svg data-doodle="sun" viewBox="0 0 80 80" aria-hidden="true" style="position: absolute; top: clamp(-0.5rem, 1vw, 1rem); right: var(--gutter); width: clamp(46px, 7vw, 82px); height: clamp(46px, 7vw, 82px); color: var(--rust); overflow: visible; pointer-events: none">
+      <svg data-doodle="sun" viewBox="0 0 80 80" aria-hidden="true" style="position: absolute; top: clamp(-0.5rem, 1vw, 1rem); right: var(--gutter); width: clamp(60px, 9.1vw, 107px); height: clamp(60px, 9.1vw, 107px); color: var(--sketch-tan); opacity: 0.6; overflow: visible; pointer-events: none">
         <g data-part="core">
           <path d="M40 31.2c4.9-.2 8.8 3.7 8.9 8.5.1 5-3.8 9-8.7 9.1-4.9.1-9-3.7-9.1-8.6-.1-4.7 3.4-8.7 8.2-9.1" style="stroke-width: 1.8"></path>
         </g>
