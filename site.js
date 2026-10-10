@@ -128,8 +128,13 @@
   /* ── Gentle work-image movement ─────────────────────────────── */
   function initWorkMotion() {
     if (reduceMotion || !("IntersectionObserver" in window)) return;
-    var images = document.querySelectorAll("#work-track > a > img");
+    var cards = document.querySelectorAll("#work-track > a");
+    var images = [];
     var visible = new Set();
+    cards.forEach(function (card) {
+      var img = card.querySelector("img");
+      if (img) { images.push(img); visible.add(img); }
+    });
     function sync() {
       images.forEach(function (img) {
         img.style.animationPlayState = !document.hidden && visible.has(img) ? "running" : "paused";
@@ -137,13 +142,16 @@
     }
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) visible.add(entry.target);
-        else visible.delete(entry.target);
+        var img = entry.target.querySelector("img");
+        if (!img) return;
+        if (entry.isIntersecting) visible.add(img);
+        else visible.delete(img);
       });
       sync();
-    }, { threshold: 0.15 });
-    images.forEach(function (img) { observer.observe(img); });
+    }, { threshold: 0.01 });
+    cards.forEach(function (card) { observer.observe(card); });
     document.addEventListener("visibilitychange", sync);
+    sync();
   }
 
   /* ── Work carousel ────────────────────────────────────────────── */
