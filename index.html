@@ -92,6 +92,23 @@
     @keyframes sun-spin { to { transform: rotate(360deg); } }
     @keyframes arrow-nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-7px); } }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0.01ms !important; animation: none !important; } }
+    .bio-link { text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+    @media (max-width: 640px) {
+      :root { --gutter: clamp(1.75rem, 7.5vw, 2.5rem); }
+      [data-screen-label="Hero"] { padding-top: 5rem !important; }
+      .hero-name { font-size: clamp(3.75rem, 19vw, 7.6rem) !important; }
+      .hero-intro { line-height: 1.6 !important; min-height: 4.8em !important; }
+      #type-role { white-space: normal !important; }
+      svg[data-doodle="sun"] { top: -3.5rem !important; }
+      .hero-birds { top: -3.25rem; }
+      svg[data-doodle="ellipse"] { width: calc(100% + 40px) !important; }
+      #about > div { gap: 2.75rem !important; }
+      #about > div > div { flex-basis: 100% !important; }
+      #about p { line-height: 1.65 !important; }
+      #about p:first-of-type { font-size: 1.25rem !important; line-height: 1.45 !important; }
+      #work-track > a { flex-basis: min(78vw, 300px) !important; }
+      footer > div { row-gap: 1.5rem !important; }
+    }
   </style>
 </head>
 <body>
@@ -169,7 +186,7 @@
         </g>
       </svg>
 
-      <h1 style="margin: 0 0 0.5rem; font-weight: 500; font-size: clamp(4.25rem, 19.5vw, 15.5rem); line-height: 0.86; letter-spacing: -0.05em">
+      <h1 class="hero-name" style="margin: 0 0 0.5rem; font-weight: 500; font-size: clamp(4.25rem, 19.5vw, 15.5rem); line-height: 0.86; letter-spacing: -0.05em">
         <span style="display: block">Mary</span>
         <span style="display: block">Nunes</span>
       </h1>
@@ -178,7 +195,7 @@
         <path vector-effect="non-scaling-stroke" d="M3 13.2C68 4.6 148 1.9 232 3.4c38 .7 74 2.4 108 4.6 25 1.6 50 2 77-1.4"></path>
       </svg>
 
-      <p style="margin: 0; font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.375rem); line-height: 1.45; min-height: 2.9em">Copywriter and brand storyteller with a focus on <em id="type-role" style="font-style: normal; color: var(--rust); white-space: nowrap">naming &amp; packaging</em><span aria-hidden="true" style="display: inline-block; width: 1px; margin-left: 1px; color: var(--rust); animation: caret-blink 1s step-end infinite">|</span></p>
+      <p class="hero-intro" style="margin: 0; font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.375rem); line-height: 1.45; min-height: 2.9em">Copywriter and brand storyteller with a focus on <em id="type-role" style="font-style: normal; color: var(--rust); white-space: nowrap">naming &amp; packaging</em><span aria-hidden="true" style="display: inline-block; width: 1px; margin-left: 1px; color: var(--rust); animation: caret-blink 1s step-end infinite">|</span></p>
     </div>
   </section>
 
@@ -408,7 +425,7 @@
         </p>
 
         <p style="margin: 0 0 1.25rem; max-width: 62ch; color: var(--ink-soft)">
-          Previously, she was the in-house copywriter at amika and a Senior Copywriter at Antonym, a brand voice and copy strategy studio. Her experience spans the entire product lifecycle—from naming, packaging, and creative concepting to in-store displays, digital, and social.
+          Previously, she was the in-house copywriter at <a class="bio-link" href="https://loveamika.com/" target="_blank" rel="noopener">amika</a> and a Senior Copywriter at <a class="bio-link" href="https://www.antonym-studio.com/" target="_blank" rel="noopener">Antonym</a>, a brand voice and copy strategy studio. Her experience spans the entire product lifecycle—from naming, packaging, and creative concepting to in-store displays, digital, and social.
         </p>
 
         <p style="margin: 0 0 1.25rem; max-width: 62ch; color: var(--ink-soft)">
