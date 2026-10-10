@@ -93,11 +93,11 @@
         var animation = document.createElementNS("http://www.w3.org/2000/svg", "animate");
         animation.setAttribute("attributeName", morph ? "d" : "opacity");
         animation.setAttribute("values", el.getAttribute(morph ? "data-morph-values" : "data-scene-opacity"));
-        animation.setAttribute("keyTimes", "0;0.14;0.25;0.39;0.5;0.64;0.75;0.89;1");
-        animation.setAttribute("dur", "32s");
+        animation.setAttribute("keyTimes", "0;0.112;0.2;0.312;0.4;0.512;0.6;0.712;0.8;0.912;1");
+        animation.setAttribute("dur", "40s");
         animation.setAttribute("repeatCount", "indefinite");
         animation.setAttribute("calcMode", "spline");
-        animation.setAttribute("keySplines", Array(8).fill("0.45 0 0.55 1").join(";"));
+        animation.setAttribute("keySplines", Array(10).fill("0.45 0 0.55 1").join(";"));
         el.appendChild(animation);
       });
       svg.setCurrentTime(0);

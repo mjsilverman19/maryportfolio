@@ -24,7 +24,7 @@ python3 -m http.server 8000
 ## What's on the page
 
 - **Hero** with a tagline that types through Mary’s four focus areas.
-- **Ambient landscape** — faint pink beach, mountain, hill, and desert sketches morph on a 32-second loop behind the hero. The sun stays consistent. Animation pauses offscreen and in hidden tabs; reduced motion keeps the beach still.
+- **Ambient landscape** — wide, translucent tan beach, mountain, hill, desert, and city sketches morph on a 40-second loop behind the hero. Birds appear over the beach; the larger pink sun stays consistent. Animation pauses offscreen and in hidden tabs; reduced motion keeps the beach still.
 - **Selected Work** — a horizontal carousel of client pieces (real
   imagery, prev/next buttons, a scroll progress bar). Each card links to
   the brand.
