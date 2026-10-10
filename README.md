@@ -5,7 +5,7 @@ runtime — just HTML, one script, and images.
 
 ```
 index.html          # the page (styles are inline, per the design export)
-site.js             # work carousel, hover, draw-on-scroll doodles
+site.js             # typing tagline, work carousel, hover, draw-on-scroll doodles
 assets/img/         # portrait (mary.jpeg)
 assets/work/        # work-card images, one per client
 assets/logos/       # client logos for the marquee
@@ -23,7 +23,7 @@ python3 -m http.server 8000
 
 ## What's on the page
 
-- **Hero** with Mary’s introduction and four focus areas.
+- **Hero** with a tagline that types through Mary’s four focus areas, including the supplied `//` endings.
 - **Selected Work** — a horizontal carousel of client pieces (real
   imagery, prev/next buttons, a scroll progress bar). Each card links to
   the brand.
@@ -40,7 +40,8 @@ python3 -m http.server 8000
 Copy and layout live directly in `index.html` as inline styles (this is
 how the design tool exports). The quickest things to change:
 
-- **Introduction and focus areas** — the paragraph in the Hero section.
+- **Introduction** — the paragraph in the Hero section of `index.html`.
+- **Typing focus areas** — the `roles` array in `site.js`; the first phrase is also the fallback text in the hero’s `<em id="type-role">`.
 - **Work cards** — each is an `<a href="…">` in the `#work-track` block:
   brand name, title, category label, link, and `assets/work/<brand>` image.
 - **Client logos** — the marquee lists each logo twice (that's what makes
